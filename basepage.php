@@ -1,6 +1,6 @@
-<?php include __DIR__ . './parts/connect-db.php';
+<?php /*include __DIR__ . './parts/connect-db.php';
 
-$pageName = 'base';
+$pageName = 'base';*/
 
 ?>
 <?php include __DIR__ . './parts/html-head.php'; ?>
