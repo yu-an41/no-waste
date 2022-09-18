@@ -1,7 +1,9 @@
-<?php /*include __DIR__ . './parts/html-head.php'; 
+<?php /*include __DIR__ . './parts/connect_db.php';
 
 $pageName = 'cart';*/
+
 ?>
+<?php include __DIR__ . './parts/html-head.php';?>
 <?php include __DIR__ . './parts/nav-bar.php'; ?>
 <div class="container">
     <div class="row">
