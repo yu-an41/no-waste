@@ -13,7 +13,6 @@ $pageName = 'cart';*/
                             <i class="fa-solid fa-trash"></i>
                         </th>
                         <th scope="col">order_sid</th>
-                        <th scope="col">member_sid</th>
                         <th scope="col">created_at</th>
                         <th scope="col">total</th>
                         <th scope="col">
@@ -31,7 +30,6 @@ $pageName = 'cart';*/
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
