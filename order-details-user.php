@@ -11,7 +11,7 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
             <div class="col">
                 <h6>order summary</h6>
                 <ul>
-                    <li>order_sid</li>
+                    <li>order_sid: <a href="#"></a></li>
                     <li>created_at</li>
                 </ul>
                 <table class="table table-striped">
