@@ -1,6 +1,11 @@
+<?php
+if(! isset($_SESSION)){
+    session_start();
+}
+?>
 <style>
     nav.navbar .nav-item .nav-link.active {
-        background-color: lightblue;
+        background-color: coral;
         color: white;
         font-weight: bold;
         border-radius: 10px;
