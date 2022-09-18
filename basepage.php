@@ -1,10 +1,11 @@
-<?php /*include __DIR__ . './parts/connect_db.php';
-
-$pageName = 'base';*/
-
+<?php
+include __DIR__ . '/parts/connect_db.php';
+$pageName = 'base';
 ?>
-<?php include __DIR__ . './parts/html-head.php'; ?>
-<?php include __DIR__ . './parts/nav-bar.php'; ?>
+<?php
+include __DIR__ . '/parts/html-head.php'; ?>
+<?php
+include __DIR__ . '/parts/nav-bar.php'; ?>
 <div class="container">
     <div class="row mb-3">
         <h5>\ 惜食戰士GOGO！ /</h5>
@@ -67,5 +68,7 @@ $pageName = 'base';*/
     </div>
 </div>
 
-<?php include __DIR__ . './parts/scripts.php'; ?>
-<?php include __DIR__ . './parts/html-foot.php'; ?>
+<?php
+include __DIR__ . '/parts/scripts.php'; ?>
+<?php
+include __DIR__ . '/parts/html-foot.php'; ?>
