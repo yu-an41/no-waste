@@ -79,14 +79,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <?php /*for ($i = 1; $i <= $totalRows; $i++) :*/ ?>
-                        <th scope="row">
-                        </th>
+                    <tr scope="row">
                         <td></td>
                         <td></td>
                         <td></td>
-                        <? /*endfor; */ ?>
                     </tr>
                 </tbody>
             </table>

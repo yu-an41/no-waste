@@ -88,10 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <?php /*for ($i = 1; $i <= $totalRows; $i++) :*/ ?>
-                            <th scope="row">
-                            </th>
+                        <tr scope="row">
                             <td>
                                 <a href="#">
                                     <i class="fa-solid fa-trash"></i>
@@ -106,7 +103,6 @@
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             </td>
-                            <? /*endfor; */ ?>
                         </tr>
                     </tbody>
                 </table>

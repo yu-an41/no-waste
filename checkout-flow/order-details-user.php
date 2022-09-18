@@ -88,9 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">
-                            </th>
+                        <tr scope="row">
                             <td></td>
                             <td></td>
                             <td></td>
