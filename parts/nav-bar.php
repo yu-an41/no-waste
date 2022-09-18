@@ -34,12 +34,14 @@
                     <li class="nav-item <?= $pageName == 'forum' ? 'active' : '' ?>">
                         <a class="nav-link <?= $pageName == 'product' ? 'active' : '' ?>" href="#">論壇</a>
                     </li>
-                    <li class="nav-item <?= $pageName == 'cart' ? 'active' : '' ?>">
-                        <a class="nav-link" href="#">購物車</a>
-                    </li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <?php if (empty($_SESSION['user1'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login-api.php">登入</a>
                         </li>
@@ -47,6 +49,11 @@
                             <a class="nav-link" href="#">註冊</a>
                         </li>
                     <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa-regular fa-cart-shopping"></i>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link"><?= $_SESSION['user1']['nickname'] ?></a>
                         </li>
