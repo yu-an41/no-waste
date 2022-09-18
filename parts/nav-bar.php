@@ -2,7 +2,7 @@
     session_start();
 }
 ?>
-<style>
+<style></style>
     nav.navbar .nav-item .nav-link.active {
         background-color: lightblue;
         color: white;
