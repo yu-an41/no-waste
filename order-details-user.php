@@ -17,7 +17,7 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">order-details_sid</th>
+                            <th scope="col">order_details_sid</th>
                             <th scope="col">product_sid</th>
                             <th scope="col">product_name</th>
                             <th scope="col">quantity</th>
