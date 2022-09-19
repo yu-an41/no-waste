@@ -14,12 +14,12 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
                     <h5 class="card-title">Admin Login</h5>
                     <form name="formAdminLogin" onsubmit="checkForm(); return false;">
                         <div class="mb-3">
-                            <label for="adminAccount" class="form-label">Account</label>
-                            <input type="text" class="form-control" id="adminAccount" name="adminAccount">
+                            <label for="account" class="form-label">Account</label>
+                            <input type="text" class="form-control" id="account" name="account">
                         </div>
                         <div class="mb-3">
-                            <label for="adminPW" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="adminPW" name="adminPW">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <button type="submit" class="btn btn-light">LOGIN</button>
                     </form>
@@ -31,22 +31,22 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
 <?php
 include __DIR__ . '/parts/scripts.php'; ?>
 <script>
-    function checkForm(){
+    function checkForm() {
         const fd = new FormData(document.formAdminLogin);
 
-        fetch('login-api.php', {
-            method: 'POST',
-            body: fd,
-        })
-        .then(r => r.json())
-        .then(obj => {
-            console.log(obj);
-            if(obj.success){
-                location.href = 'basepage.php';
-            } else {
-                alert(obj.error);
-            }
-        })
+        fetch('login-api-admin.php', {
+                method: 'POST',
+                body: fd,
+            })
+            .then(r => r.json())
+            .then(obj => {
+                console.log(obj);
+                if (obj.success) {
+                    location.href = 'basepage.php';
+                } else {
+                    alert(obj.error);
+                }
+            })
     }
 </script>
 <?php
