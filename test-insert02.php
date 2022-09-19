@@ -3,10 +3,10 @@ require __DIR__ . '/parts/connect_db.php';
 
 $postData = [
     'order_sid' => 2,
-    'product_sid' => 35,
-    'product_name' => '西西里咖啡',
-    'quantity' => 3,
-    'total_price' => 150,
+    'product_sid' => 57,
+    'product_name' => '堅果生菜沙拉',
+    'quantity' => 2,
+    'total_price' => 90,
 ];
 
 $sql = "INSERT INTO `order-details`(
