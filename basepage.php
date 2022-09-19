@@ -7,14 +7,9 @@ include __DIR__ . '/parts/html-head.php'; ?>
 <?php
 include __DIR__ . '/parts/nav-bar.php'; ?>
 <div class="container">
-    <div class="row mb-3">
-        <h5>\ 惜食戰士GOGO！ /</h5>
-    </div>
-</div>
-
-<div class="container">
-    <?php if (empty($_SESSION['admin'])) : ?>
-        <div class="row">
+    <?php if (!empty($_SESSION['admin'])) : ?>
+        <div class="row mb-3">
+        <h5>\ 歡迎回家，惜食守衛隊！/</h5>
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card">
                     <div class="card-body">
@@ -69,6 +64,17 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
             </div>
         </div>
     <?php else : ?>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mb-3 d-flex flex-column align-items-center">
+                <h5>There's nothing here!</h5>
+                <p>歡迎點擊下方按鈕，或從上方選單導覽列逛逛本站！</p>
+                <button type="submit" class="btn btn-info mb-2">我想逛商品</button>
+                <br>
+                <button type="submit" class="btn btn-info mb-2">我想成為會員</button>
+                <br>
+                <button type="submit" class="btn btn-info mb-2">我想加入商家</button>
+            </div>
+        </div>
     <?php endif ?>
 </div>
 
