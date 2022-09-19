@@ -1,6 +1,10 @@
 <?php
 include __DIR__ . '/parts/connect_db.php';
 $pageName = 'cartProducts';
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
