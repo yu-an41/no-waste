@@ -19,6 +19,7 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
                             <th scope="col">member_sid</th>
                             <th scope="col">created_at</th>
                             <th scope="col">total</th>
+                            <th scope="col">order_status</th>
                             <th scope="col">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </th>
@@ -31,6 +32,7 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
