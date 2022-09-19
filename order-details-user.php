@@ -1,6 +1,6 @@
 <?php
 include __DIR__ . '/parts/connect_db.php';
-// $pageName = 'orderDetails';
+$pageName = 'orderDetails';
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>

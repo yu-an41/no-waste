@@ -1,11 +1,3 @@
-<?php
-include __DIR__ . '/parts/connect_db.php';
-// $pageName = 'orderDetails';
-?>
-<?php
-include __DIR__ . '/parts/html-head.php'; ?>
-<?php
-include __DIR__ . '/parts/nav-bar.php'; ?>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -18,17 +10,17 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr scope="row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr>
+                        <?php foreach ($rows as $r) : ?>
+                            <td>
+                                <a href="#"><?= $r['order_sid'] ?></a>
+                            </td>
+                            <td><?= $r['created_at'] ?></td>
+                            <td><?= $r['total'] ?></td>
+                        <? endforeach; ?>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<?php
-include __DIR__ . '/parts/scripts.php'; ?>
-<?php
-include __DIR__ . '/parts/html-foot.php'; ?>
