@@ -14,7 +14,7 @@ if(! isset($_SESSION)){
 <div class="container mb-3">
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">選單在這邊</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,7 +37,7 @@ if(! isset($_SESSION)){
                     </li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <?php if (empty($_SESSION['user1'])) : ?>
+                    <?php if (empty($_SESSION['admin'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -46,17 +46,9 @@ if(! isset($_SESSION)){
                         <li class="nav-item">
                             <a class="nav-link" href="login-api.php">登入</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">註冊</a>
-                        </li>
                     <?php else : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa-regular fa-cart-shopping"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"><?= $_SESSION['user1']['nickname'] ?></a>
+                            <a class="nav-link"><?= $_SESSION['admin']['account'] ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">登出</a>
