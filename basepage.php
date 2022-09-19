@@ -8,8 +8,8 @@ include __DIR__ . '/parts/html-head.php'; ?>
 include __DIR__ . '/parts/nav-bar.php'; ?>
 <div class="container">
     <?php if (!empty($_SESSION['admin'])) : ?>
-        <div class="row mb-3">
-        <h5>\ 歡迎回家，惜食守衛隊！/</h5>
+        <div class="row">
+            <h5 class="h-100 text-center mb-3">\ 歡迎回家，惜食守衛隊！/</h5>
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card">
                     <div class="card-body">
@@ -57,8 +57,8 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">訂單</h5>
-                        <a href="#" class="btn btn-primary">訂單列表</a>
-                        <a href="#" class="btn btn-primary">訂單明細</a>
+                        <a href="order-history-admin.php" class="btn btn-primary">訂單列表</a>
+                        <a href="order-details-admin.php" class="btn btn-primary">訂單明細</a>
                     </div>
                 </div>
             </div>
