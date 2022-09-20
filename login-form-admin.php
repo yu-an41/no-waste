@@ -5,7 +5,7 @@ $pageName = 'loginAdmin';
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
 <?php
-include __DIR__ . '/parts/nav-bar.php'; ?>
+include __DIR__ . '/parts/nav-bar-admin.php'; ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
@@ -42,7 +42,7 @@ include __DIR__ . '/parts/scripts.php'; ?>
             .then(obj => {
                 console.log(obj);
                 if (obj.success) {
-                    location.href = 'basepage.php';
+                    location.href = 'basepage-admin.php';
                 } else {
                     alert(obj.error);
                 }

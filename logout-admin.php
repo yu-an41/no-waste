@@ -3,4 +3,4 @@
 
     unset($_SESSION['admin']);
 
-    header('Location: basepage.php');
+    header('Location: basepage-admin.php');
