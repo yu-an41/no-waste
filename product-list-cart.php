@@ -5,6 +5,9 @@ $pageName = 'cartProducts';
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
+
+$sid = isset($_GET['product_sid'])? intval($_GET['product_sid']): 0; 
+$qty = isset($_GET['qty'])? intval($_GET['quantity']): 0;
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
@@ -16,7 +19,7 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
         height: 160px;
     }
 </style>
-<form name="formProduct" class="" onsubmit="addToCart(); return false;">
+<form name="formProduct" class="d-none" onsubmit="addToCart(); return false;" >
     <div class="mb-3">
         <input type="text" class="form-control" id="product_sid" name="product_sid" value="">
         <input type="password" class="form-control" id="product_price" name="product_price">
