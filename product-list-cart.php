@@ -1,13 +1,17 @@
 <?php
 include __DIR__ . '/parts/connect_db.php';
-$pageName = 'cartProducts';
+$pageName = 'list';
 
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
-}
+$perPage = 4;
+$page = isset($_GET['page'])? intval($_GET['page']): 1;
+$cate = isset($_GET['cate'])? intval($_GET['cate']): 0;
+$price = isset($_GET['price'])? intval($_GET['price']): 0;
 
-$sid = isset($_GET['product_sid'])? intval($_GET['product_sid']): 0; 
-$qty = isset($_GET['qty'])? intval($_GET['quantity']): 0;
+$qsp = []; 
+//qsp = query string parameters
+
+$sql = "SELECT * FROM categories WHERE 1";
+$cates = $pdo -> query($sql) -> fetchAll();
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
@@ -19,16 +23,9 @@ include __DIR__ . '/parts/nav-bar.php'; ?>
         height: 160px;
     }
 </style>
-<form name="formProduct" class="d-none" onsubmit="addToCart(); return false;" >
-    <div class="mb-3">
-        <input type="text" class="form-control" id="product_sid" name="product_sid" value="">
-        <input type="password" class="form-control" id="product_price" name="product_price">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 <div class="container">
     <div class="row d-flex flex-row">
-        <div class="col mb-3">
+        <div class="col mb-3" data_value = "">
             <div class="card h-100 d-flex flex-column" style="width: 18rem;">
                 <img src="https://pic.pimg.tw/borntoshop/1624378052-2230262190-g_wn.jpg" class="card-img-top">
                 <div class="card-body">
