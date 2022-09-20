@@ -2,8 +2,8 @@
 include __DIR__ . '/parts/connect_db.php';
 $pageName = 'cart';
 
-if(! isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
+if(! isset($_SESSION['user'])) {
+    $_SESSION['user'] = [];
 }
 
 ?>
