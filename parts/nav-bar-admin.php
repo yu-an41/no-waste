@@ -35,14 +35,14 @@ if (!isset($_SESSION)) {
                     <li class="nav-item <?= $pageName == 'forum' ? 'active' : '' ?>">
                         <a class="nav-link <?= $pageName == 'product' ? 'active' : '' ?>" href="#">論壇</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <?php if (empty($_SESSION['admin'])) : ?>
-                        <li class="nav-item">
+                    <li class="nav-item <?= $pageName == 'cart' ? 'active' : '' ?>">
                             <a class="nav-link" href="cart.php">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <?php if (empty($_SESSION['admin'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login-api-admin.php">登入</a>
                         </li>

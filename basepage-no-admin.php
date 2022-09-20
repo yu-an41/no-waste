@@ -1,6 +1,6 @@
 <?php
 include __DIR__ . '/parts/connect_db.php';
-$pageName = 'base';
+$pageName = 'baseNoAdmin';
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
