@@ -2,15 +2,21 @@
 include __DIR__ . '/parts/connect_db.php';
 $pageName = 'list';
 
-$perPage = 4;
+$perPage = 10;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-// $sql = "SELECT * FROM categories WHERE 1";
+$sql = "SELECT * FROM `category` WHERE 1";
 
-$t_sql = "SELECT COUNT(1) FROM product_list WHERE 1";
+$t_sql = "SELECT COUNT(1) FROM `product-list` WHERE 1";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
 
 $totalPages = ceil($totalRows / $perPage);
+if ($page < 1) {
+    $page = 1;
+}
+if ($page > $totalPages) {
+    $page = $totalPages;
+}
 
 $rows = [];
 
@@ -23,106 +29,77 @@ if ($totalRows > 0) {
         header('Location: ?page=' . $totalPages);
         exit;
     }
-    $sql = sprintf("SELECT * FROM product_list ORDER BY product_sid DESC LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
+    $sql = sprintf("SELECT * FROM `product-list` ORDER BY `product_sid` DESC LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
 
     $rows = $pdo->query($sql)->fetchAll();
 }
-echo json_encode([
-    'totalRows' => $totalRows,
-    'totalPages' => $totalPages,
-    'perPage' => $perPage,
-    'page' => $page,
-    'rows' => $rows,
-]);
-exit;
+// echo json_encode([
+//     'totalRows' => $totalRows,
+//     'totalPages' => $totalPages,
+//     'perPage' => $perPage,
+//     'page' => $page,
+//     'rows' => $rows,
+// ]);
+// exit;
 
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
 <?php
-include __DIR__ . '/parts/nav-bar.php'; ?>
+include __DIR__ . '/parts/nav-bar-no-admin.php'; ?>
 <div class="container">
-    <div class="row d-flex flex-row">
-        <div class="col mb-3" data_value="">
-            <div class="card h-100 d-flex flex-column" style="width: 18rem;">
-                <img src="https://pic.pimg.tw/borntoshop/1624378052-2230262190-g_wn.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">西西里咖啡</h5>
-                    <p class="card-text flex-grow-1">清爽又可口，最適合讀書讀到頭昏腦脹的你^^</p>
-                </div>
-                <div class="w-75 d-flex flex-row  justify-content-between px-3 mb-4">
-                    <select class="w-75 form-select">
-                        <option selected>選擇數量</option>
-                        <?php for ($i = 1; $i <= 5; $i++) : ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <? endfor; ?>
-                    </select>
-                    <a href="#" class="btn btn-success">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
+    <div class="row">
+        <div class="col">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item <?= 1 === $page ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page= .'<?= $page - 1 ?>'">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </li>
+                    <?php for ($i = $page - 2; $i <= $page + 2; $i++) :
+                        if ($i >= 1 and $i <= $totalPages) :
+                    ?>
+                            <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                                <a class="page-link" href="?page= .'<?= $page ?>'">
+                                    <?= $i ?>
+                                </a>
+                            </li>
+                    <?php endif;
+                    endfor; ?>
+                    <li class="page-item <?= $totalPages === $page ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page + 1 ?>">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row d-flex flex-row justify-content-start align-content-between">
+        <?php foreach ($rows as $r) : ?>
+            <div class="col-md-3 mb-3">
+                <div class="card h-100 d-flex flex-column h-100" style="min-width: 12rem;">
+                    <img src="<?= $r['product_image'] ?>" class="card-img-top" style="height: 180px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-start align-items-start h-100">
+                        <h6 class="card-title"><?= $r['product_name'] ?></h6>
+                        <p class="card-text flex-grow-1"><?= $r['product_description'] ?></p>
+                        <p class="card-text">＄<?= $r['product_price'] ?></p>
+                        <form class="w-75 d-flex flex-row  justify-content-around px-1 mb-4">
+                            <select name="" id="" class="form-control qty " style="display: inline-block; width: auto">
+                                <option selected disabled>請選擇數量</option>
+                                <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                <? endfor; ?>
+                            </select>
+                            <button type="button" class="btn btn-success add-to-cart-btn">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col mb-3">
-            <div class="card h-100 d-flex flex-column" style="width: 18rem;">
-                <img src="https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">堅果生菜沙拉</h5>
-                    <p class="card-text flex-grow-1">多吃蔬菜有益身體健康喔</p>
-                </div>
-                <div class="w-75 d-flex flex-row  justify-content-between px-3 mb-4">
-                    <select class="w-75 form-select">
-                        <option selected>選擇數量</option>
-                        <?php for ($i = 1; $i <= 5; $i++) : ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <? endfor; ?>
-                    </select>
-                    <a href="#" class="btn btn-success">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-3">
-            <div class="card h-100 d-flex flex-column" style="width: 18rem;">
-                <img src="https://www.mos.com.tw/upload/product/20200424_094717_014.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">藜麥海洋珍珠堡</h5>
-                    <p class="card-text flex-grow-1">香Q美味的藜麥米飯，搭配鮮蝦、干貝、墨魚等豐富的美味海鮮...？</p>
-                </div>
-                <div class="w-75 d-flex flex-row  justify-content-between px-3 mb-4">
-                    <select class="w-75 form-select">
-                        <option selected>選擇數量</option>
-                        <?php for ($i = 1; $i <= 5; $i++) : ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <? endfor; ?>
-                    </select>
-                    <a href="#" class="btn btn-success">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-3">
-            <div class="card h-100 d-flex flex-column" style="width: 18rem;">
-                <img src="https://tokyo-kitchen.icook.network/uploads/recipe/cover/381066/157eaf40f08b2f15.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">焦糖肉桂捲</h5>
-                    <p class="card-text flex-grow-1">不僅有超香濃的肉桂味，搭配著專屬調製焦糖淋醬的肉桂捲，光是看著就食指大動！</p>
-                </div>
-                <div class="w-75 d-flex flex-row  justify-content-between px-3 mb-4">
-                    <select class="w-75 form-select">
-                        <option selected>選擇數量</option>
-                        <?php for ($i = 1; $i <= 5; $i++) : ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <? endfor; ?>
-                    </select>
-                    <a href="#" class="btn btn-success">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 <?php
