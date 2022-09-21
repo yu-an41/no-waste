@@ -1,13 +1,18 @@
 <?php
 include __DIR__ . '/parts/connect_db.php';
-// $pageName = 'orderDetails';
+$pageName = 'orderDetails';
+
+$sql = "SELECT `order_sid`, `member_sid`, `created_at`, `total`, `order_status` FROM `order-history` WHERE 1"; 
+
+$stmt = $pdo -> prepare($sql) -> fetchAll();
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
 <?php
-include __DIR__ . '/parts/nav-bar.php'; ?>
+include __DIR__ . '/parts/nav-bar-admin.php'; ?>
 <div class="container">
     <div class="row">
+    <h4 class="text-center mb-3">歷史訂單一覽</h4>
         <div class="col">
             <table class="table table-striped">
                 <thead>

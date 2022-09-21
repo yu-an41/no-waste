@@ -3,29 +3,47 @@ include __DIR__ . '/parts/connect_db.php';
 $pageName = 'list';
 
 $perPage = 4;
-$page = isset($_GET['page'])? intval($_GET['page']): 1;
-$cate = isset($_GET['cate'])? intval($_GET['cate']): 0;
-$price = isset($_GET['price'])? intval($_GET['price']): 0;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-$qsp = []; 
-//qsp = query string parameters
+// $sql = "SELECT * FROM categories WHERE 1";
 
-$sql = "SELECT * FROM categories WHERE 1";
-$cates = $pdo -> query($sql) -> fetchAll();
+$t_sql = "SELECT COUNT(1) FROM product_list WHERE 1";
+$totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
+
+$totalPages = ceil($totalRows / $perPage);
+
+$rows = [];
+
+if ($totalRows > 0) {
+    if ($page > 1) {
+        header('Location: ?page = 1');
+        exit;
+    }
+    if ($page > $totalPages) {
+        header('Location: ?page=' . $totalPages);
+        exit;
+    }
+    $sql = sprintf("SELECT * FROM product_list ORDER BY product_sid DESC LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
+
+    $rows = $pdo->query($sql)->fetchAll();
+}
+echo json_encode([
+    'totalRows' => $totalRows,
+    'totalPages' => $totalPages,
+    'perPage' => $perPage,
+    'page' => $page,
+    'rows' => $rows,
+]);
+exit;
+
 ?>
 <?php
 include __DIR__ . '/parts/html-head.php'; ?>
 <?php
 include __DIR__ . '/parts/nav-bar.php'; ?>
-<style>
-    img {
-        object-fit: cover;
-        height: 160px;
-    }
-</style>
 <div class="container">
     <div class="row d-flex flex-row">
-        <div class="col mb-3" data_value = "">
+        <div class="col mb-3" data_value="">
             <div class="card h-100 d-flex flex-column" style="width: 18rem;">
                 <img src="https://pic.pimg.tw/borntoshop/1624378052-2230262190-g_wn.jpg" class="card-img-top">
                 <div class="card-body">
