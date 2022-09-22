@@ -2,7 +2,7 @@
 include __DIR__ . '/parts/connect_db.php';
 $pageName = 'list';
 
-$perPage = 10;
+$perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 $sql = "SELECT * FROM `category` WHERE 1";
@@ -26,7 +26,7 @@ if ($totalRows > 0) {
         exit;
     }
     if ($page > $totalPages) {
-        header('Location: ?page=' . $totalPages);
+        header('Location: ?page= .$totalPages');
         exit;
     }
     $sql = sprintf("SELECT * FROM `product-list` ORDER BY `product_sid` DESC LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
